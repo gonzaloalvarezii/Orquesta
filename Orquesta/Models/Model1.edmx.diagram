@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="135844a30c5d42b0ad047aa8158fc234" Name="Diagram1">
+        <EntityTypeShape EntityType="dev_orquestaModel.ARTICULO" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="dev_orquestaModel.CANAL" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dev_orquestaModel.CATEGORIA" Width="1.5" PointX="12.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="dev_orquestaModel.DETALLE_INVENTARIO" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dev_orquestaModel.DETALLE_PEDIDO" Width="1.5" PointX="5.25" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="dev_orquestaModel.ESTADO" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="dev_orquestaModel.INVENTARIO" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dev_orquestaModel.MODELO" Width="1.5" PointX="7.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="dev_orquestaModel.MODELO_PLAN" Width="1.5" PointX="10" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dev_orquestaModel.MODULO" Width="1.5" PointX="1.5" PointY="21.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="dev_orquestaModel.OPERACIONES" Width="1.5" PointX="1.5" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dev_orquestaModel.PEDIDO" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dev_orquestaModel.PLANES" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dev_orquestaModel.POS" Width="1.5" PointX="10" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="dev_orquestaModel.POS_SIM" Width="1.5" PointX="5.25" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dev_orquestaModel.ROL" Width="1.5" PointX="1.5" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="dev_orquestaModel.ROL_OPERACION" Width="1.5" PointX="3.75" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dev_orquestaModel.SIM" Width="1.5" PointX="10" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dev_orquestaModel.sysdiagrams" Width="1.5" PointX="12.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="dev_orquestaModel.TIPO_OPERADOR" Width="1.5" PointX="7.75" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dev_orquestaModel.UBICACION" Width="1.5" PointX="5.75" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="dev_orquestaModel.USUARIO" Width="1.5" PointX="0.75" PointY="11.125" IsExpanded="true" />
+        <AssociationConnector Association="dev_orquestaModel.FK_DETALLE_INVENTARIO_PRODUCTO" ManuallyRouted="false" />
+        <AssociationConnector Association="dev_orquestaModel.FK_DETALLE_PEDIDO_PRODUCTO" ManuallyRouted="false" />
+        <AssociationConnector Association="dev_orquestaModel.FK_POS_SIM_POS" ManuallyRouted="false" />
+        <AssociationConnector Association="dev_orquestaModel.FK_POS_SIM_SIM" ManuallyRouted="false" />
+        <AssociationConnector Association="dev_orquestaModel.FK_PRODUCTO_ESTADO" ManuallyRouted="false" />
+        <AssociationConnector Association="dev_orquestaModel.FK_INVENTARIO_CANAL" ManuallyRouted="false" />
+        <AssociationConnector Association="dev_orquestaModel.FK_PEDIDO_USUARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="dev_orquestaModel.FK_DETALLE_INVENTARIO_INVENTARIO" ManuallyRouted="false" />
+        <AssociationConnector Association="dev_orquestaModel.FK_DETALLE_PEDIDO_PEDIDO" ManuallyRouted="false" />
+        <AssociationConnector Association="dev_orquestaModel.FK_Modelo_Plan_MODELO" ManuallyRouted="false" />
+        <AssociationConnector Association="dev_orquestaModel.FK_POS_MODELO" ManuallyRouted="false" />
+        <AssociationConnector Association="dev_orquestaModel.FK_Modelo_Plan_PLANES" ManuallyRouted="false" />
+        <AssociationConnector Association="dev_orquestaModel.FK_OPERACIONES_MODULO" ManuallyRouted="false" />
+        <AssociationConnector Association="dev_orquestaModel.FK_ROL_OPERACION_OPERACIONES" ManuallyRouted="false" />
+        <AssociationConnector Association="dev_orquestaModel.FK_PEDIDO_USUARIO1" ManuallyRouted="false" />
+        <AssociationConnector Association="dev_orquestaModel.FK_ROL_OPERACION_ROL" ManuallyRouted="false" />
+        <AssociationConnector Association="dev_orquestaModel.FK_USUARIO_ROL" ManuallyRouted="false" />
+        <AssociationConnector Association="dev_orquestaModel.FK_SIM_TIPO_OPERADOR" ManuallyRouted="false" />
+        <InheritanceConnector EntityType="dev_orquestaModel.POS" />
+        <InheritanceConnector EntityType="dev_orquestaModel.SIM" />
+        <AssociationConnector Association="dev_orquestaModel.FK_DETALLE_INVENTARIO_UBICACION" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

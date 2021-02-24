@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Orquesta.Models.Detalle_InventarioDTO>
+
+@{
+    ViewBag.Title = "Details";
+
+}
+
+<h2>Detalle Inventario</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_articulo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Categoria)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ubicacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_articulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categoria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ubicacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Editar_Detalle_Inventario", new {  id=item.Id_Detalle_Inventario}) |
+                @Html.ActionLink("Detalles", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Eliminar", "Delete_Detalles", new { id_det = item.Id_Detalle_Inventario },new {onclick = "DeleteConfirm();" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+@section Scripts {
+    <script type="text/javascript">
+        function DeleteConfirm() {
+            if (confirm("Quieres Eliminar el Registro"))
+                return true;
+            else
+                return false;
+        }
+    </script>
+    }

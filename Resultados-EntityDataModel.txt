@@ -1,0 +1,58 @@
+﻿Archivo de modelo generado: Model1.edmx.
+La carga de los metadatos desde la base de datos tardó 00:00:01.8093719.
+La generación del modelo tardó 00:00:02.7663280.
+Se agregó la cadena de conexión al archivo Web.Config.
+El proceso de escritura del archivo .edmx tardó 00:00:00.0008048.
+Archivo de modelo generado: Model1.edmx.
+La carga de los metadatos desde la base de datos tardó 00:00:01.0093027.
+La generación del modelo tardó 00:00:04.3421178.
+Se agregó la cadena de conexión al archivo Web.Config.
+El proceso de escritura del archivo .edmx tardó 00:00:00.0010789.
+Archivo de modelo generado: Model1.edmx.
+La carga de los metadatos desde la base de datos tardó 00:00:00.5879942.
+La generación del modelo tardó 00:00:02.0590704.
+Se agregó la cadena de conexión al archivo Web.Config.
+El proceso de escritura del archivo .edmx tardó 00:00:00.0009369.
+Archivo de modelo generado: Model1.edmx.
+La carga de los metadatos desde la base de datos tardó 00:00:00.6254146.
+La generación del modelo tardó 00:00:02.1265265.
+Se agregó la cadena de conexión al archivo Web.Config.
+El proceso de escritura del archivo .edmx tardó 00:00:00.0014666.
+Archivo de modelo generado: Model1.edmx.
+La carga de los metadatos desde la base de datos tardó 00:00:01.1831942.
+La generación del modelo tardó 00:00:04.0721743.
+Archivo de modelo generado: Model1.edmx.
+La carga de los metadatos desde la base de datos tardó 00:00:00.4573785.
+La generación del modelo tardó 00:00:00.5490390.
+Archivo de modelo generado: Model1.edmx.
+La carga de los metadatos desde la base de datos tardó 00:00:00.4256896.
+La generación del modelo tardó 00:00:01.0358419.
+Archivo de modelo generado: Model1.edmx.
+La carga de los metadatos desde la base de datos tardó 00:00:00.4188437.
+La generación del modelo tardó 00:00:01.0014298.
+Archivo de modelo generado: Model1.edmx.
+La carga de los metadatos desde la base de datos tardó 00:00:00.4236147.
+La generación del modelo tardó 00:00:00.4457562.
+Se agregó la cadena de conexión al archivo Web.Config.
+El proceso de escritura del archivo .edmx tardó 00:00:00.0008799.
+Archivo de modelo generado: Model1.edmx.
+La carga de los metadatos desde la base de datos tardó 00:00:00.7915453.
+La generación del modelo tardó 00:00:02.4762003.
+Se agregó la cadena de conexión al archivo Web.Config.
+El proceso de escritura del archivo .edmx tardó 00:00:00.0009055.
+Archivo de modelo generado: Model1.edmx.
+La carga de los metadatos desde la base de datos tardó 00:00:00.6042600.
+La generación del modelo tardó 00:00:00.7612457.
+Se agregó la cadena de conexión al archivo Web.Config.
+El proceso de escritura del archivo .edmx tardó 00:00:00.0010848.
+Archivo de modelo generado: Model1.edmx.
+La carga de los metadatos desde la base de datos tardó 00:00:00.5757088.
+La generación del modelo tardó 00:00:00.4797995.
+Se agregó la cadena de conexión al archivo Web.Config.
+El proceso de escritura del archivo .edmx tardó 00:00:00.0009690.
+Archivo de modelo generado: Model1.edmx.
+La carga de los metadatos desde la base de datos tardó 00:00:00.8874734.
+La generación del modelo tardó 00:00:02.9506032.
+Archivo de modelo generado: Model1.edmx.
+La carga de los metadatos desde la base de datos tardó 00:00:00.8355285.
+La generación del modelo tardó 00:00:03.0848378.

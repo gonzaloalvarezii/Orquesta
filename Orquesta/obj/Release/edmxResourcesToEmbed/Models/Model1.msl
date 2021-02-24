@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dev_orquestaModelStoreContainer" CdmEntityContainer="dev_orquestaEntities">
+    <EntitySetMapping Name="ARTICULO">
+      <EntityTypeMapping TypeName="IsTypeOf(dev_orquestaModel.ARTICULO)">
+        <MappingFragment StoreEntitySet="ARTICULO">
+          <ScalarProperty Name="Id_Articulo" ColumnName="Id_Articulo" />
+          <ScalarProperty Name="Id_Estado" ColumnName="Id_Estado" />
+          <ScalarProperty Name="Id_Categoria" ColumnName="Id_Categoria" />
+          <ScalarProperty Name="Stock" ColumnName="Stock" />
+          <ScalarProperty Name="Precio_Compra" ColumnName="Precio_Compra" />
+          <ScalarProperty Name="Precio_Venta" ColumnName="Precio_Venta" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(dev_orquestaModel.POS)">
+        <MappingFragment StoreEntitySet="POS">
+          <ScalarProperty Name="Id_Articulo" ColumnName="Id_Articulo" />
+          <ScalarProperty Name="Pk_version" ColumnName="Pk_version" />
+          <ScalarProperty Name="SW_version" ColumnName="SW_version" />
+          <ScalarProperty Name="Id_Modelo" ColumnName="Id_Modelo" />
+          <ScalarProperty Name="Nro_serie" ColumnName="Nro_serie" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(dev_orquestaModel.SIM)">
+        <MappingFragment StoreEntitySet="SIM">
+          <ScalarProperty Name="Id_Articulo" ColumnName="Id_Articulo" />
+          <ScalarProperty Name="Id_Tipo_Operador" ColumnName="Id_Tipo_Operador" />
+          <ScalarProperty Name="Phone_Numer" ColumnName="Phone_Numer" />
+          <ScalarProperty Name="Puk" ColumnName="Puk" />
+          <ScalarProperty Name="PIN" ColumnName="PIN" />
+          <ScalarProperty Name="Nro_serie" ColumnName="Nro_serie" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CANAL">
+      <EntityTypeMapping TypeName="dev_orquestaModel.CANAL">
+        <MappingFragment StoreEntitySet="CANAL">
+          <ScalarProperty Name="Id_Canal" ColumnName="Id_Canal" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DETALLE_INVENTARIO">
+      <EntityTypeMapping TypeName="dev_orquestaModel.DETALLE_INVENTARIO">
+        <MappingFragment StoreEntitySet="DETALLE_INVENTARIO">
+          <ScalarProperty Name="Id_Detalle_Inventario" ColumnName="Id_Detalle_Inventario" />
+          <ScalarProperty Name="Id_Articulo" ColumnName="Id_Articulo" />
+          <ScalarProperty Name="Id_Ubicacion" ColumnName="Id_Ubicacion" />
+          <ScalarProperty Name="Id_Inventario" ColumnName="Id_Inventario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DETALLE_PEDIDO">
+      <EntityTypeMapping TypeName="dev_orquestaModel.DETALLE_PEDIDO">
+        <MappingFragment StoreEntitySet="DETALLE_PEDIDO">
+          <ScalarProperty Name="Id_Detalle_Pedido" ColumnName="Id_Detalle_Pedido" />
+          <ScalarProperty Name="Id_Pedido" ColumnName="Id_Pedido" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="Id_Articulo" ColumnName="Id_Articulo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ESTADO">
+      <EntityTypeMapping TypeName="dev_orquestaModel.ESTADO">
+        <MappingFragment StoreEntitySet="ESTADO">
+          <ScalarProperty Name="Id_Estado" ColumnName="Id_Estado" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Id_Categoria" ColumnName="Id_Categoria" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INVENTARIO">
+      <EntityTypeMapping TypeName="dev_orquestaModel.INVENTARIO">
+        <MappingFragment StoreEntitySet="INVENTARIO">
+          <ScalarProperty Name="Id_Inventario" ColumnName="Id_Inventario" />
+          <ScalarProperty Name="Id_Canal" ColumnName="Id_Canal" />
+          <ScalarProperty Name="Fac_numero" ColumnName="Fac_numero" />
+          <ScalarProperty Name="Fec_ingreso" ColumnName="Fec_ingreso" />
+          <ScalarProperty Name="Proveedor" ColumnName="Proveedor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MODELO">
+      <EntityTypeMapping TypeName="dev_orquestaModel.MODELO">
+        <MappingFragment StoreEntitySet="MODELO">
+          <ScalarProperty Name="Id_Modelo" ColumnName="Id_Modelo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MODELO_PLAN">
+      <EntityTypeMapping TypeName="dev_orquestaModel.MODELO_PLAN">
+        <MappingFragment StoreEntitySet="MODELO_PLAN">
+          <ScalarProperty Name="Id_Modelo_Plan" ColumnName="Id_Modelo_Plan" />
+          <ScalarProperty Name="Id_Modelo" ColumnName="Id_Modelo" />
+          <ScalarProperty Name="Id_Plan" ColumnName="Id_Plan" />
+          <ScalarProperty Name="Fecha_Asociado" ColumnName="Fecha_Asociado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MODULO">
+      <EntityTypeMapping TypeName="dev_orquestaModel.MODULO">
+        <MappingFragment StoreEntitySet="MODULO">
+          <ScalarProperty Name="Id_Modulo" ColumnName="Id_Modulo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OPERACIONES">
+      <EntityTypeMapping TypeName="dev_orquestaModel.OPERACIONES">
+        <MappingFragment StoreEntitySet="OPERACIONES">
+          <ScalarProperty Name="Id_Operaciones" ColumnName="Id_Operaciones" />
+          <ScalarProperty Name="Descripcione" ColumnName="Descripcione" />
+          <ScalarProperty Name="Id_Modulo" ColumnName="Id_Modulo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PEDIDO">
+      <EntityTypeMapping TypeName="dev_orquestaModel.PEDIDO">
+        <MappingFragment StoreEntitySet="PEDIDO">
+          <ScalarProperty Name="Id_Pedido" ColumnName="Id_Pedido" />
+          <ScalarProperty Name="Id_Canal" ColumnName="Id_Canal" />
+          <ScalarProperty Name="Id_Usuario" ColumnName="Id_Usuario" />
+          <ScalarProperty Name="Fecha_Ingreso" ColumnName="Fecha_Ingreso" />
+          <ScalarProperty Name="Fecha_Entrega" ColumnName="Fecha_Entrega" />
+          <ScalarProperty Name="Comentario" ColumnName="Comentario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PLANES">
+      <EntityTypeMapping TypeName="dev_orquestaModel.PLANES">
+        <MappingFragment StoreEntitySet="PLANES">
+          <ScalarProperty Name="Id_Plan" ColumnName="Id_Plan" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="POS_SIM">
+      <EntityTypeMapping TypeName="dev_orquestaModel.POS_SIM">
+        <MappingFragment StoreEntitySet="POS_SIM">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Id_POS" ColumnName="Id_POS" />
+          <ScalarProperty Name="Id_SIM" ColumnName="Id_SIM" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ROL">
+      <EntityTypeMapping TypeName="dev_orquestaModel.ROL">
+        <MappingFragment StoreEntitySet="ROL">
+          <ScalarProperty Name="Id_Rol" ColumnName="Id_Rol" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ROL_OPERACION">
+      <EntityTypeMapping TypeName="dev_orquestaModel.ROL_OPERACION">
+        <MappingFragment StoreEntitySet="ROL_OPERACION">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Id_Rol" ColumnName="Id_Rol" />
+          <ScalarProperty Name="Id_Operacion" ColumnName="Id_Operacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="dev_orquestaModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TIPO_OPERADOR">
+      <EntityTypeMapping TypeName="dev_orquestaModel.TIPO_OPERADOR">
+        <MappingFragment StoreEntitySet="TIPO_OPERADOR">
+          <ScalarProperty Name="Id_Tipo_Operador" ColumnName="Id_Tipo_Operador" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USUARIO">
+      <EntityTypeMapping TypeName="dev_orquestaModel.USUARIO">
+        <MappingFragment StoreEntitySet="USUARIO">
+          <ScalarProperty Name="Id_Usuario" ColumnName="Id_Usuario" />
+          <ScalarProperty Name="Id_Rol" ColumnName="Id_Rol" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+          <ScalarProperty Name="Mail" ColumnName="Mail" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

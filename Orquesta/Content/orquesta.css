@@ -1,0 +1,22 @@
+﻿body {
+}
+
+i.closeTag {
+    width: 14px;
+    height: 14px;
+    display: block;
+    background: url(../closeTag.png) no-repeat;
+    float: left;
+    margin-right: 8px;
+    cursor: pointer;
+    /* margin-top: 2.5%; */
+}
+
+
+.tag {
+    background: #E7E8E9;
+    color: #717273;
+    padding: 6px 8px;
+    border-radius: 3px;
+    padding-bottom: 0px;
+}

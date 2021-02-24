@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<nav class="top-nav">
+    <svg height="20" width="20" onclick="openSideNav()">
+        <g fill="none" stroke="black" stroke-width="4">
+            <path stroke-linecap="round" d="M5 5 l215 0" />
+            <path stroke-linecap="round" d="M5 10 l215 0" />
+            <path stroke-linecap="round" d="M5 15 l215 0" />
+        </g>
+    </svg>
+</nav>
+<div id="side-bar" class="side-nav">
+    <ul>
+        <li>
+            @Html.ActionLink("Asignar POS-SIM", "getConfiguracionPOS", "Pedido", new { @class = "elements" }, null)
+        </li>
+        <li>
+            <a href="#">Producción</a>
+        </li>
+        <li>
+            <a href="#">Sellos</a>
+        </li>
+        <li>
+            <a href="#">Pedido</a>
+        </li>
+    </ul>
+</div>
+<div id="body-content"> Body Content here </div>
+
+@Styles.Render("~/Content/cssInstalacion")
+
+@section Scripts {
+
+    <script>
+        function openSideNav() {
+            var sideBarDisplay = document.getElementById("side-bar").style.width;
+            if (sideBarDisplay == "150px") {
+                document.getElementById("side-bar").style.width = "0px";
+                document.getElementById("body-content").style.marginLeft = "0px";
+            } else {
+                document.getElementById("side-bar").style.width = "150px";
+                document.getElementById("body-content").style.marginLeft = "150px";
+            }
+        }
+    </script>
+
+}

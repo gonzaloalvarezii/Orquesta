@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dev_giaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CANAL">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DETALLE_PEDIDO">
+    <Key>
+      <PropertyRef Name="Id_Detalle" />
+    </Key>
+    <Property Name="Id_Detalle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_Pedido" Type="int" Nullable="false" />
+    <Property Name="Id_Modelo" Type="int" />
+    <Property Name="Cantidad" Type="int" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="MODELO">
+    <Key>
+      <PropertyRef Name="Id_Modelo" />
+    </Key>
+    <Property Name="Id_Modelo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_Plan" Type="int" />
+    <Property Name="Nro_serie" Type="varchar" MaxLength="30" />
+    <Property Name="Nombre" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="PEDIDO">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_Canal" Type="int" Nullable="false" />
+    <Property Name="id_usuario" Type="int" Nullable="false" />
+    <Property Name="Cantidad" Type="int" />
+    <Property Name="Fecha_Ingreso" Type="datetime" Nullable="false" />
+    <Property Name="Fecha_Entrega" Type="datetime" />
+    <Property Name="Comentario" Type="varchar" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="PLAN">
+    <Key>
+      <PropertyRef Name="Id_Plan" />
+    </Key>
+    <Property Name="Id_Plan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ROL">
+    <Key>
+      <PropertyRef Name="Id_Rol" />
+    </Key>
+    <Property Name="Id_Rol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="USUARIO">
+    <Key>
+      <PropertyRef Name="Id_Usuario" />
+    </Key>
+    <Property Name="Id_Usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_Rol" Type="int" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Apellido" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Mail" Type="varchar" MaxLength="50" />
+    <Property Name="Telefono" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <Association Name="FK_DETALLE_PEDIDO_MODELO">
+    <End Role="MODELO" Type="Self.MODELO" Multiplicity="0..1" />
+    <End Role="DETALLE_PEDIDO" Type="Self.DETALLE_PEDIDO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MODELO">
+        <PropertyRef Name="Id_Modelo" />
+      </Principal>
+      <Dependent Role="DETALLE_PEDIDO">
+        <PropertyRef Name="Id_Modelo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DETALLE_PEDIDO_PEDIDO">
+    <End Role="PEDIDO" Type="Self.PEDIDO" Multiplicity="1" />
+    <End Role="DETALLE_PEDIDO" Type="Self.DETALLE_PEDIDO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PEDIDO">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="DETALLE_PEDIDO">
+        <PropertyRef Name="Id_Pedido" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MODELO_PLAN">
+    <End Role="PLAN" Type="Self.PLAN" Multiplicity="0..1" />
+    <End Role="MODELO" Type="Self.MODELO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PLAN">
+        <PropertyRef Name="Id_Plan" />
+      </Principal>
+      <Dependent Role="MODELO">
+        <PropertyRef Name="Id_Plan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PEDIDO_CANAL">
+    <End Role="CANAL" Type="Self.CANAL" Multiplicity="1" />
+    <End Role="PEDIDO" Type="Self.PEDIDO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CANAL">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PEDIDO">
+        <PropertyRef Name="Id_Canal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PEDIDO_USUARIO">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+    <End Role="PEDIDO" Type="Self.PEDIDO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="Id_Usuario" />
+      </Principal>
+      <Dependent Role="PEDIDO">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USUARIO_ROL">
+    <End Role="ROL" Type="Self.ROL" Multiplicity="1" />
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROL">
+        <PropertyRef Name="Id_Rol" />
+      </Principal>
+      <Dependent Role="USUARIO">
+        <PropertyRef Name="Id_Rol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dev_giaModelStoreContainer">
+    <EntitySet Name="CANAL" EntityType="Self.CANAL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DETALLE_PEDIDO" EntityType="Self.DETALLE_PEDIDO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MODELO" EntityType="Self.MODELO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PEDIDO" EntityType="Self.PEDIDO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PLAN" EntityType="Self.PLAN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ROL" EntityType="Self.ROL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_DETALLE_PEDIDO_MODELO" Association="Self.FK_DETALLE_PEDIDO_MODELO">
+      <End Role="MODELO" EntitySet="MODELO" />
+      <End Role="DETALLE_PEDIDO" EntitySet="DETALLE_PEDIDO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DETALLE_PEDIDO_PEDIDO" Association="Self.FK_DETALLE_PEDIDO_PEDIDO">
+      <End Role="PEDIDO" EntitySet="PEDIDO" />
+      <End Role="DETALLE_PEDIDO" EntitySet="DETALLE_PEDIDO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MODELO_PLAN" Association="Self.FK_MODELO_PLAN">
+      <End Role="PLAN" EntitySet="PLAN" />
+      <End Role="MODELO" EntitySet="MODELO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PEDIDO_CANAL" Association="Self.FK_PEDIDO_CANAL">
+      <End Role="CANAL" EntitySet="CANAL" />
+      <End Role="PEDIDO" EntitySet="PEDIDO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PEDIDO_USUARIO" Association="Self.FK_PEDIDO_USUARIO">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="PEDIDO" EntitySet="PEDIDO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USUARIO_ROL" Association="Self.FK_USUARIO_ROL">
+      <End Role="ROL" EntitySet="ROL" />
+      <End Role="USUARIO" EntitySet="USUARIO" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

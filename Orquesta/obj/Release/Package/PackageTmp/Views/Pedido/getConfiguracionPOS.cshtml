@@ -1,0 +1,238 @@
+﻿@model Orquesta.Models.getConfiguracionPOS
+
+
+<h2>Asignar POS-SIM</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div>
+
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+<div class="row">
+    <div class="col" style="height: 50px;">
+
+        <label>Tiene Remito?</label>
+        <label class="radio-inline">
+            <input type="radio" name="optradio" id="rdoNo" onchange="mostrarNroRemito();" checked>No
+        </label>
+        <label class="radio-inline">
+            <input type="radio" name="optradio" id="rdoSi" onchange="mostrarNroRemito();">Si
+        </label>
+
+
+        <label class="radio-inline">
+            <label id="lblNroRemito">Nro. Remito</label> @Html.EditorFor(model => model.Id_Pedido, new { htmlAttributes = new { @class = "textboxSerie" } })
+        </label>
+
+    </div>
+
+
+    <div class="col">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                @Html.LabelFor(model => model.Modelo, htmlAttributes: new { @class = "input-group-text" })
+            </div>
+
+            @Html.DropDownList("Modelo", new SelectList(ViewBag.Modelo, "Id_Modelo", "Nombre"))
+        </div>
+    </div>
+
+    <div class="col" style="padding-top: 2%;">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                @Html.LabelFor(model => model.Software, htmlAttributes: new { @class = "input-group-text" })
+            </div>
+
+            @Html.EditorFor(model => model.Software, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+
+
+    <div class="col">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                @Html.LabelFor(model => model.Package, htmlAttributes: new { @class = "input-group-text" })
+            </div>
+
+            @Html.EditorFor(model => model.Package, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "input-group-text" })
+            </div>
+
+
+            @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+
+
+
+
+    <div class="col" style="padding-top: 2%;">
+
+        <div class="input-group mb-3">
+            <div style="width: 140%;padding-left: 0px;" class="col-xs-12 col-md-3">
+                <div class="form-group">
+
+
+                    <div class="input-group">
+                        <label class="input-group-addon">POS</label>
+                        @Html.EditorFor(model => model.Nro_serie_POS, new { htmlAttributes = new { onchange = "ultimosValores(this)", @class = "form-control", placeholder = "POS Serie" } })
+                        <label class="input-group-addon">SIM</label>
+                        @Html.EditorFor(model => model.Nro_serie_SIM, new { htmlAttributes = new { @class = "form-control", placeholder = "SIM Serie" } })
+
+
+
+                    </div>
+
+                    <input type="image" onclick="agregarFila();return false" src="~/Imagenes/add.png" style="width: 40px;/* margin-bottom: 5px; */float: right;/* margin-bottom: -50%; *//* padding-left: 15%; */margin-right: -5%;margin-top: -4.4%;">
+
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <div class="col">
+        <div class="input-group mb-3">
+            <table id="tablaItems">
+                <thead>
+                    <tr>
+                        <th>Nro serie</th>
+                        <th>Modelo</th>
+                        <th>Sowftware</th>
+                        <th>Package</th>
+                        <th>SIM </th>
+                        <th>descripcion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="input-group mb-3">
+
+            <div class="form-group">
+                <div class="col-md-10">
+
+                    <input type="image" src="~/Imagenes/save.png" style="width: 40px;" id="btnGuardar">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+       
+
+
+
+
+    </div>
+    }
+
+    <div style="float:right;margin-top:5%">
+        @Html.ActionLink("Volver", "Index")
+    </div>
+
+    @Styles.Render("~/Content/cssPedido")
+
+    @section Scripts {
+        <script>
+
+            $(document).ready(function () {
+
+                $('#Id_Pedido').hide();
+                $("#lblNroRemito").hide();
+                $("#tablaItems").hide();
+            });
+
+
+            function mostrarNroRemito() {
+
+                //if ($("#rdoNo").prop("checked", true)) {
+                if ($('#rdoNo').is(':checked')) { 
+                    $("#lblNroRemito").hide();
+                    $("#Id_Pedido").hide();
+
+                } else {
+                    $("#lblNroRemito").show();
+                    $("#Id_Pedido").show();
+
+                }
+
+            }
+
+            function ultimosValores(input1) {
+                            //   var input2 = document.getElementById('Nro_serie_POS');
+
+                            var last = input1.value;
+
+                input1.value = last;
+
+                $("#Nro_serie_SIM").focus();
+
+          }
+
+
+        function agregarFila() {
+
+            $("#tablaItems").show();
+
+            var slt = document.getElementById('Modelo');
+
+            var htmlTags = '<tr><td>' + document.getElementById('Nro_serie_POS').value + '</td><td>' + slt.options[slt.selectedIndex].value + '</td><td>' + document.getElementById('Software').value + '</td ><td>' + document.getElementById('Package').value + '</td ><td>' + document.getElementById('Nro_serie_SIM').value + '</td><td>' + document.getElementById('Descripcion').value + '</td></tr>';
+
+            $('#tablaItems tbody').append(htmlTags);
+
+        }
+
+
+
+        $(function () {
+            $("#btnGuardar").click(function () {
+                var itemlist = [];
+
+                //get cell values, instead of the header text.
+                $("table tr:not(:first)").each(function () {
+                    var tdlist = $(this).find("td");
+                    var Item = { Nro_serie_POS: $(tdlist[0]).html(), Modelo: $(tdlist[1]).html(), Software: $(tdlist[2]).html(), Package: $(tdlist[3]).html(), Nro_serie_SIM: $(tdlist[4]).html(), Descripcion: $(tdlist[5]).html()};
+                    itemlist.push(Item);
+                })
+
+                $.ajax({
+                    url: '@Url.Action("InsertValue", "Pedido")', //
+                    dataType: "json",
+                    data: JSON.stringify({ itemlist: itemlist }),
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (result) {
+                        alert("success");
+                    },
+                    error: function (xhr) {
+                        alert("error");
+                    }
+                });
+            });
+        });
+
+        </script>
+    }
+
+

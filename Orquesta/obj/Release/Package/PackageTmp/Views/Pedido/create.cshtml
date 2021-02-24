@@ -1,0 +1,125 @@
+﻿@model Orquesta.Models.PEDIDO
+
+@{
+
+    ViewBag.Title = "Nuevo";
+}
+
+<h2>Nuevo Pedido</h2>
+
+
+@using (Html.BeginForm("guardar", "Pedido"))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <label class="control-label col-md-2">Canal</label>
+        <div class="col-md-10">
+            @Html.DropDownListFor(x => x.Id_Canal, (SelectList)ViewBag.Canales as SelectList, "---------Seleccione--------", new { @class = "form-control", required = "required" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Plan</label>
+        <div class="col-md-10">
+
+            @Html.DropDownList("plan", new SelectList(ViewBag.Planes, "Value", "Text"))
+            @Html.DropDownList("operador", new SelectList(ViewBag.Operador, "Id_Tipo_Operador", "Descripcion"))
+            <label style="margin-left: 2%;">Cantidad:</label><input type="text" id="cant" onkeypress="return isNumberKey(event);" style="width: 5%;margin-left: 1%;" />
+            <input value="Agregar" type="button" id="btnAgregar" name="btnAgregar" onclick="crearTabla('plan', 'cant', 'items', 'detalles','operador')" />
+
+
+            <table id="items"></table>
+
+
+            <input type="hidden" id="detalles" name="detalles" />
+
+        </div>
+
+    </div>
+
+    @if (ViewBag.tblPlan.Count > 0)
+    {
+
+        <fieldset  style="width: 30%;float: right">
+            <legend>Stock</legend>
+            <table id="table" class="display" style="width: 100%;">
+
+                <tr>
+
+                    <th>Plan</th>
+                    <th>Modelo</th>
+                    <th>Cantidad</th>
+
+
+                </tr>
+
+                @foreach (var row in ViewBag.tblPlan)
+                {
+                    <tr>
+                        <td>@row.Descripcion</td>
+                        <td>@row.Modelo</td>
+                        <td>
+                            @row.Cantidad
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </fieldset>
+    }
+    <div class="form-group">
+        <label class="control-label col-md-2">Fecha Entrega</label>
+        <div class="col-md-10" style="width:50%;">
+            @Html.TextBoxFor(model => model.Fecha_Entrega, new { @type = "date", @Value = DateTime.Now.ToString("yyyy-MM-dd") })
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Comentario, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Comentario, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Comentario, "", new { @maxlength = "300", @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Crear" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+
+    <div id="tbl">
+
+    </div>
+
+    <p>@ViewBag.result</p>
+
+
+}
+
+
+<div>
+    @Html.ActionLink("Volver", "getPedidos")
+</div>
+
+<link href="~/Content/orquesta.css" rel="stylesheet" type="text/css" />
+<link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/orquesta.js"></script>
+    
+
+}
+
+

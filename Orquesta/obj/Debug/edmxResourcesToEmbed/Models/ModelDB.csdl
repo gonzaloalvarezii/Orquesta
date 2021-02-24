@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dev_giaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CANAL">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="PEDIDO" Relationship="Self.FK_PEDIDO_CANAL" FromRole="CANAL" ToRole="PEDIDO" />
+  </EntityType>
+  <EntityType Name="DETALLE_PEDIDO">
+    <Key>
+      <PropertyRef Name="Id_Detalle" />
+    </Key>
+    <Property Name="Id_Detalle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_Pedido" Type="Int32" Nullable="false" />
+    <Property Name="Id_Modelo" Type="Int32" />
+    <Property Name="Cantidad" Type="Int32" />
+    <Property Name="Descripcion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="MODELO" Relationship="Self.FK_DETALLE_PEDIDO_MODELO" FromRole="DETALLE_PEDIDO" ToRole="MODELO" />
+    <NavigationProperty Name="PEDIDO" Relationship="Self.FK_DETALLE_PEDIDO_PEDIDO" FromRole="DETALLE_PEDIDO" ToRole="PEDIDO" />
+  </EntityType>
+  <EntityType Name="MODELO">
+    <Key>
+      <PropertyRef Name="Id_Modelo" />
+    </Key>
+    <Property Name="Id_Modelo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_Plan" Type="Int32" />
+    <Property Name="Nro_serie" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="DETALLE_PEDIDO" Relationship="Self.FK_DETALLE_PEDIDO_MODELO" FromRole="MODELO" ToRole="DETALLE_PEDIDO" />
+    <NavigationProperty Name="PLAN" Relationship="Self.FK_MODELO_PLAN" FromRole="MODELO" ToRole="PLAN" />
+  </EntityType>
+  <EntityType Name="PEDIDO">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_Canal" Type="Int32" Nullable="false" />
+    <Property Name="id_usuario" Type="Int32" Nullable="false" />
+    <Property Name="Cantidad" Type="Int32" />
+    <Property Name="Fecha_Ingreso" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Fecha_Entrega" Type="DateTime" Precision="3" />
+    <Property Name="Comentario" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CANAL" Relationship="Self.FK_PEDIDO_CANAL" FromRole="PEDIDO" ToRole="CANAL" />
+    <NavigationProperty Name="DETALLE_PEDIDO" Relationship="Self.FK_DETALLE_PEDIDO_PEDIDO" FromRole="PEDIDO" ToRole="DETALLE_PEDIDO" />
+    <NavigationProperty Name="USUARIO" Relationship="Self.FK_PEDIDO_USUARIO" FromRole="PEDIDO" ToRole="USUARIO" />
+  </EntityType>
+  <EntityType Name="PLAN">
+    <Key>
+      <PropertyRef Name="Id_Plan" />
+    </Key>
+    <Property Name="Id_Plan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="MODELO" Relationship="Self.FK_MODELO_PLAN" FromRole="PLAN" ToRole="MODELO" />
+  </EntityType>
+  <EntityType Name="ROL">
+    <Key>
+      <PropertyRef Name="Id_Rol" />
+    </Key>
+    <Property Name="Id_Rol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="USUARIO" Relationship="Self.FK_USUARIO_ROL" FromRole="ROL" ToRole="USUARIO" />
+  </EntityType>
+  <EntityType Name="USUARIO">
+    <Key>
+      <PropertyRef Name="Id_Usuario" />
+    </Key>
+    <Property Name="Id_Usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_Rol" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PEDIDO" Relationship="Self.FK_PEDIDO_USUARIO" FromRole="USUARIO" ToRole="PEDIDO" />
+    <NavigationProperty Name="ROL" Relationship="Self.FK_USUARIO_ROL" FromRole="USUARIO" ToRole="ROL" />
+  </EntityType>
+  <Association Name="FK_PEDIDO_CANAL">
+    <End Role="CANAL" Type="Self.CANAL" Multiplicity="1" />
+    <End Role="PEDIDO" Type="Self.PEDIDO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CANAL">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PEDIDO">
+        <PropertyRef Name="Id_Canal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DETALLE_PEDIDO_MODELO">
+    <End Role="MODELO" Type="Self.MODELO" Multiplicity="0..1" />
+    <End Role="DETALLE_PEDIDO" Type="Self.DETALLE_PEDIDO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MODELO">
+        <PropertyRef Name="Id_Modelo" />
+      </Principal>
+      <Dependent Role="DETALLE_PEDIDO">
+        <PropertyRef Name="Id_Modelo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DETALLE_PEDIDO_PEDIDO">
+    <End Role="PEDIDO" Type="Self.PEDIDO" Multiplicity="1" />
+    <End Role="DETALLE_PEDIDO" Type="Self.DETALLE_PEDIDO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PEDIDO">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="DETALLE_PEDIDO">
+        <PropertyRef Name="Id_Pedido" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MODELO_PLAN">
+    <End Role="PLAN" Type="Self.PLAN" Multiplicity="0..1" />
+    <End Role="MODELO" Type="Self.MODELO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PLAN">
+        <PropertyRef Name="Id_Plan" />
+      </Principal>
+      <Dependent Role="MODELO">
+        <PropertyRef Name="Id_Plan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PEDIDO_USUARIO">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+    <End Role="PEDIDO" Type="Self.PEDIDO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="Id_Usuario" />
+      </Principal>
+      <Dependent Role="PEDIDO">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USUARIO_ROL">
+    <End Role="ROL" Type="Self.ROL" Multiplicity="1" />
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROL">
+        <PropertyRef Name="Id_Rol" />
+      </Principal>
+      <Dependent Role="USUARIO">
+        <PropertyRef Name="Id_Rol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dev_giaEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CANAL" EntityType="Self.CANAL" />
+    <EntitySet Name="DETALLE_PEDIDO" EntityType="Self.DETALLE_PEDIDO" />
+    <EntitySet Name="MODELO" EntityType="Self.MODELO" />
+    <EntitySet Name="PEDIDO" EntityType="Self.PEDIDO" />
+    <EntitySet Name="PLAN" EntityType="Self.PLAN" />
+    <EntitySet Name="ROL" EntityType="Self.ROL" />
+    <EntitySet Name="USUARIO" EntityType="Self.USUARIO" />
+    <AssociationSet Name="FK_PEDIDO_CANAL" Association="Self.FK_PEDIDO_CANAL">
+      <End Role="CANAL" EntitySet="CANAL" />
+      <End Role="PEDIDO" EntitySet="PEDIDO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DETALLE_PEDIDO_MODELO" Association="Self.FK_DETALLE_PEDIDO_MODELO">
+      <End Role="MODELO" EntitySet="MODELO" />
+      <End Role="DETALLE_PEDIDO" EntitySet="DETALLE_PEDIDO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DETALLE_PEDIDO_PEDIDO" Association="Self.FK_DETALLE_PEDIDO_PEDIDO">
+      <End Role="PEDIDO" EntitySet="PEDIDO" />
+      <End Role="DETALLE_PEDIDO" EntitySet="DETALLE_PEDIDO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MODELO_PLAN" Association="Self.FK_MODELO_PLAN">
+      <End Role="PLAN" EntitySet="PLAN" />
+      <End Role="MODELO" EntitySet="MODELO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PEDIDO_USUARIO" Association="Self.FK_PEDIDO_USUARIO">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="PEDIDO" EntitySet="PEDIDO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USUARIO_ROL" Association="Self.FK_USUARIO_ROL">
+      <End Role="ROL" EntitySet="ROL" />
+      <End Role="USUARIO" EntitySet="USUARIO" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

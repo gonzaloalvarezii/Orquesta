@@ -1,0 +1,95 @@
+﻿@model Orquesta.Models.InventarioDTO
+
+
+
+
+<h2>Nuevo Inventario</h2>
+
+@using (Html.BeginForm("create2", "Inventario", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    @Html.AntiForgeryToken()
+
+    <div class="row" style="margin-top: 5%;">
+
+        <div class="col">
+            <div style="width:100%;" class="input-group mb-3">
+                <label style="width: 15%;" class="control-label">Nro. Factura</label>
+                <div style="display: inline-flex;" class="input-group-prepend">
+
+
+                    @Html.EditorFor(model => model.Fac_numero, new { htmlAttributes = new { @class = "input", } })
+                    @Html.ValidationMessageFor(model => model.Fac_numero, "", new { @class = "text-danger" })
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col" style="padding-top: 2%;">
+            <div style="width:100%;" class="input-group mb-3">
+                <label style=" width: 15%;" class="control-label">Fecha Ingreso</label>
+
+                <div style="width: 24%; display: inline-flex;" class="input-group-prepend">
+                    @Html.TextBoxFor(model => model.Fec_ingreso, new { @type = "date", @Value = DateTime.Now.ToString("yyyy-MM-dd"), @class = "input2" })
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="col" style="padding-top: 2%;">
+            <div style="width:100%;" class="input-group mb-3">
+                <label style=" width: 15%;" class="control-label">Proveedor</label>
+
+                <div style="display: inline-flex;" class="input-group-prepend">
+                    @Html.EditorFor(model => model.Proveedor, new { htmlAttributes = new { @class = "input" } })
+                    @Html.ValidationMessageFor(model => model.Proveedor, "", new { @class = "text-danger" })
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col" style="padding-top: 2%;">
+            <div style="width:100%;" class="input-group mb-3">
+
+                <label style=" width: 15%;" class="control-label">Adjunte Documento:</label>
+
+                <div style="display: inline-flex;" class="input-group-prepend">
+                    @using (Html.BeginForm("UploadFile", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+
+                        <div>
+                            @Html.TextBox("file", "", new { type = "file" }) <br />
+
+                        </div>
+
+
+                    }
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col" style="padding-top: 2%;">
+            <div style="width:100%;" class="input-group mb-3">
+                <input type="submit" value="Guardar" class="btn btn-default" />
+            </div>
+        </div>
+
+    
+    </div>
+}
+
+<div style="margin-top: 10%;">
+    @Html.ActionLink("Volver", "Index")
+</div>
+
+@Styles.Render("~/Content/cssInventario")
+
+@section Scripts {
+    <script type="text/javascript">
+
+    </script>
+}
+

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Orquesta.Models.InventarioDTO>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Inventarios</h2>
+
+<p>
+    @Html.ActionLink("Nuevo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Fac_numero)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fec_ingreso)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Proveedor)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fac_numero)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fec_ingreso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Proveedor)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Detailles", "Details", new { id=item.Id_Inventario }) |
+            @Html.ActionLink("Eliminar", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

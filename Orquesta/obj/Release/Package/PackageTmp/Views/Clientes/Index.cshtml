@@ -1,0 +1,96 @@
+﻿@model IEnumerable<Orquesta.Models.Cliente>
+
+@{
+    ViewBag.Title = "Clientes";
+}
+
+<h2>Clientes</h2>
+
+<p>
+    @Html.ActionLink("Nuevo", "Create")
+<br />
+    @using (Html.BeginForm("Index", "Clientes"))
+    {
+    <span>Nombre o RUT</span>    <input type="text" name="busqueda" id="busqueda">
+        <input type="submit" value="Filtro" id="FilterClick" />
+    }
+    </p>
+
+<div id="tbl">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RUT)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RUT)
+                </td>
+                <td>
+                    @Html.ActionLink("Contratos", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Instalación", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Sellos", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+<input type="submit" id="FilterClick2" name="FilterClick2" value="llamar" />
+
+@section scripts{
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#FilterClick2").on("click", function (e) {
+                e.preventDefault();
+
+                $.ajax({
+                   // url: "http://localhost:54299/Clientes/getClientes2",
+                    url: '@Url.Action("getClientes2", "Clientes")',
+                    data: { busqueda: $('#busqueda').val() },
+                    type: "post",
+                    dataType: "json",
+                    success: function (result) {
+
+                        var div = $('div').find('#tbl');
+                        div.empty();
+                        var htmlText = "";
+
+                        $.each(result, function (items, item) {
+
+                            htmlText += ("<table class='table'><tr><th>Nombre</th><th>RUT</th>" +
+                                "</tr><tr><td>" + item.Nombre + "</td><td>" + item.RUT + "</td>" +
+                                "<td>" + '@Html.Raw(HttpUtility.HtmlDecode(Html.ActionLink("Contratos", "Edit", new { /* id=item.PrimaryKey */ }).ToHtmlString()))' + " | " +
+                                         '@Html.Raw(HttpUtility.HtmlDecode(Html.ActionLink("Instalación", "Details", new { /* id=item.PrimaryKey */ }).ToHtmlString()))' + " | " +
+                                         '@Html.Raw(HttpUtility.HtmlDecode(Html.ActionLink("Sellos", "Delete", new { /* id=item.PrimaryKey */ }).ToHtmlString()))' + "</td>" +
+                                 "</tr>" +
+                                "</table>");
+
+                        });
+
+                        div.append(htmlText);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert(errorThrown);
+                    }
+                });
+            });
+        });
+
+    </script>
+    
+}

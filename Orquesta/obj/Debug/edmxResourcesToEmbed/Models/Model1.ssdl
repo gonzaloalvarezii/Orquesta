@@ -1,0 +1,527 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dev_orquestaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ARTICULO">
+    <Key>
+      <PropertyRef Name="Id_Articulo" />
+    </Key>
+    <Property Name="Id_Articulo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Precio_Venta" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="Precio_Compra" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="Stock" Type="varchar" MaxLength="11" />
+    <Property Name="Id_Categoria" Type="int" />
+    <Property Name="Id_Estado" Type="int" />
+  </EntityType>
+  <EntityType Name="CANAL">
+    <Key>
+      <PropertyRef Name="Id_Canal" />
+    </Key>
+    <Property Name="Id_Canal" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CATEGORIA">
+    <Key>
+      <PropertyRef Name="Id_Categoria" />
+    </Key>
+    <Property Name="Id_Categoria" Type="int" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DETALLE_INVENTARIO">
+    <Key>
+      <PropertyRef Name="Id_Detalle_Inventario" />
+      <PropertyRef Name="Id_Inventario" />
+    </Key>
+    <Property Name="Id_Detalle_Inventario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_Articulo" Type="int" Nullable="false" />
+    <Property Name="Id_Ubicacion" Type="int" Nullable="false" />
+    <Property Name="Id_Inventario" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DETALLE_PEDIDO">
+    <Key>
+      <PropertyRef Name="Id_Detalle_Pedido" />
+      <PropertyRef Name="Id_Pedido" />
+    </Key>
+    <Property Name="Id_Detalle_Pedido" Type="int" Nullable="false" />
+    <Property Name="Id_Pedido" Type="int" Nullable="false" />
+    <Property Name="Cantidad" Type="int" />
+    <Property Name="Id_Articulo" Type="int" />
+  </EntityType>
+  <EntityType Name="ESTADO">
+    <Key>
+      <PropertyRef Name="Id_Estado" />
+    </Key>
+    <Property Name="Id_Estado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Id_Categoria" Type="int" />
+  </EntityType>
+  <EntityType Name="INVENTARIO">
+    <Key>
+      <PropertyRef Name="Id_Inventario" />
+    </Key>
+    <Property Name="Id_Inventario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_Canal" Type="int" />
+    <Property Name="Fac_numero" Type="varchar" MaxLength="30" />
+    <Property Name="Fec_ingreso" Type="datetime" />
+    <Property Name="Proveedor" Type="varchar" MaxLength="30" />
+    <Property Name="Fec_Factura" Type="datetime" />
+    <Property Name="Propietario" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="MODELO">
+    <Key>
+      <PropertyRef Name="Id_Modelo" />
+    </Key>
+    <Property Name="Id_Modelo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="MODELO_PLAN">
+    <Key>
+      <PropertyRef Name="Id_Modelo_Plan" />
+    </Key>
+    <Property Name="Id_Modelo_Plan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_Modelo" Type="int" Nullable="false" />
+    <Property Name="Id_Plan" Type="int" Nullable="false" />
+    <Property Name="Fecha_Asociado" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MODULO">
+    <Key>
+      <PropertyRef Name="Id_Modulo" />
+    </Key>
+    <Property Name="Id_Modulo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="OPERACIONES">
+    <Key>
+      <PropertyRef Name="Id_Operaciones" />
+    </Key>
+    <Property Name="Id_Operaciones" Type="int" Nullable="false" />
+    <Property Name="Descripcione" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Id_Modulo" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PEDIDO">
+    <Key>
+      <PropertyRef Name="Id_Pedido" />
+    </Key>
+    <Property Name="Id_Pedido" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_Canal" Type="int" Nullable="false" />
+    <Property Name="Id_Usuario" Type="int" Nullable="false" />
+    <Property Name="Fecha_Ingreso" Type="datetime" Nullable="false" />
+    <Property Name="Fecha_Entrega" Type="datetime" />
+    <Property Name="Comentario" Type="varchar" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="PLANES">
+    <Key>
+      <PropertyRef Name="Id_Plan" />
+    </Key>
+    <Property Name="Id_Plan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="POS">
+    <Key>
+      <PropertyRef Name="Id_Articulo" />
+    </Key>
+    <Property Name="Nro_serie" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Id_Modelo" Type="int" />
+    <Property Name="SW_version" Type="varchar" MaxLength="10" />
+    <Property Name="Pk_version" Type="varchar" MaxLength="10" />
+    <Property Name="Id_Articulo" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="POS_SIM">
+    <Key>
+      <PropertyRef Name="Id_POS" />
+      <PropertyRef Name="Id_SIM" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_POS" Type="int" Nullable="false" />
+    <Property Name="Id_SIM" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ROL">
+    <Key>
+      <PropertyRef Name="Id_Rol" />
+    </Key>
+    <Property Name="Id_Rol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ROL_OPERACION">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_Rol" Type="int" Nullable="false" />
+    <Property Name="Id_Operacion" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SIM">
+    <Key>
+      <PropertyRef Name="Id_Articulo" />
+    </Key>
+    <Property Name="Nro_serie" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="PIN" Type="varchar" MaxLength="30" />
+    <Property Name="Puk" Type="varchar" MaxLength="30" />
+    <Property Name="Phone_Numer" Type="varchar" MaxLength="30" />
+    <Property Name="Id_Tipo_Operador" Type="int" />
+    <Property Name="Id_Articulo" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TIPO_OPERADOR">
+    <Key>
+      <PropertyRef Name="Id_Tipo_Operador" />
+    </Key>
+    <Property Name="Id_Tipo_Operador" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UBICACION">
+    <Key>
+      <PropertyRef Name="Id_Ubicacion" />
+    </Key>
+    <Property Name="Id_Ubicacion" Type="int" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="40" Nullable="false" />
+  </EntityType>
+  <EntityType Name="USUARIO">
+    <Key>
+      <PropertyRef Name="Id_Usuario" />
+    </Key>
+    <Property Name="Id_Usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_Rol" Type="int" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Apellido" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Mail" Type="varchar" MaxLength="50" />
+    <Property Name="Telefono" Type="varchar" MaxLength="20" />
+    <Property Name="Password" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <Association Name="FK_DETALLE_INVENTARIO_INVENTARIO">
+    <End Role="INVENTARIO" Type="Self.INVENTARIO" Multiplicity="1" />
+    <End Role="DETALLE_INVENTARIO" Type="Self.DETALLE_INVENTARIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="INVENTARIO">
+        <PropertyRef Name="Id_Inventario" />
+      </Principal>
+      <Dependent Role="DETALLE_INVENTARIO">
+        <PropertyRef Name="Id_Inventario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DETALLE_INVENTARIO_PRODUCTO">
+    <End Role="ARTICULO" Type="Self.ARTICULO" Multiplicity="1" />
+    <End Role="DETALLE_INVENTARIO" Type="Self.DETALLE_INVENTARIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ARTICULO">
+        <PropertyRef Name="Id_Articulo" />
+      </Principal>
+      <Dependent Role="DETALLE_INVENTARIO">
+        <PropertyRef Name="Id_Articulo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DETALLE_INVENTARIO_UBICACION">
+    <End Role="UBICACION" Type="Self.UBICACION" Multiplicity="1" />
+    <End Role="DETALLE_INVENTARIO" Type="Self.DETALLE_INVENTARIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UBICACION">
+        <PropertyRef Name="Id_Ubicacion" />
+      </Principal>
+      <Dependent Role="DETALLE_INVENTARIO">
+        <PropertyRef Name="Id_Ubicacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DETALLE_PEDIDO_PEDIDO">
+    <End Role="PEDIDO" Type="Self.PEDIDO" Multiplicity="1" />
+    <End Role="DETALLE_PEDIDO" Type="Self.DETALLE_PEDIDO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PEDIDO">
+        <PropertyRef Name="Id_Pedido" />
+      </Principal>
+      <Dependent Role="DETALLE_PEDIDO">
+        <PropertyRef Name="Id_Pedido" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DETALLE_PEDIDO_PRODUCTO">
+    <End Role="ARTICULO" Type="Self.ARTICULO" Multiplicity="0..1" />
+    <End Role="DETALLE_PEDIDO" Type="Self.DETALLE_PEDIDO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ARTICULO">
+        <PropertyRef Name="Id_Articulo" />
+      </Principal>
+      <Dependent Role="DETALLE_PEDIDO">
+        <PropertyRef Name="Id_Articulo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_INVENTARIO_CANAL">
+    <End Role="CANAL" Type="Self.CANAL" Multiplicity="0..1" />
+    <End Role="INVENTARIO" Type="Self.INVENTARIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CANAL">
+        <PropertyRef Name="Id_Canal" />
+      </Principal>
+      <Dependent Role="INVENTARIO">
+        <PropertyRef Name="Id_Canal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Modelo_Plan_MODELO">
+    <End Role="MODELO" Type="Self.MODELO" Multiplicity="1" />
+    <End Role="MODELO_PLAN" Type="Self.MODELO_PLAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MODELO">
+        <PropertyRef Name="Id_Modelo" />
+      </Principal>
+      <Dependent Role="MODELO_PLAN">
+        <PropertyRef Name="Id_Modelo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Modelo_Plan_PLANES">
+    <End Role="PLANES" Type="Self.PLANES" Multiplicity="1" />
+    <End Role="MODELO_PLAN" Type="Self.MODELO_PLAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PLANES">
+        <PropertyRef Name="Id_Plan" />
+      </Principal>
+      <Dependent Role="MODELO_PLAN">
+        <PropertyRef Name="Id_Plan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OPERACIONES_MODULO">
+    <End Role="MODULO" Type="Self.MODULO" Multiplicity="1" />
+    <End Role="OPERACIONES" Type="Self.OPERACIONES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MODULO">
+        <PropertyRef Name="Id_Modulo" />
+      </Principal>
+      <Dependent Role="OPERACIONES">
+        <PropertyRef Name="Id_Modulo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PEDIDO_USUARIO">
+    <End Role="CANAL" Type="Self.CANAL" Multiplicity="1" />
+    <End Role="PEDIDO" Type="Self.PEDIDO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CANAL">
+        <PropertyRef Name="Id_Canal" />
+      </Principal>
+      <Dependent Role="PEDIDO">
+        <PropertyRef Name="Id_Canal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PEDIDO_USUARIO1">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+    <End Role="PEDIDO" Type="Self.PEDIDO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="Id_Usuario" />
+      </Principal>
+      <Dependent Role="PEDIDO">
+        <PropertyRef Name="Id_Usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_POS_MODELO">
+    <End Role="MODELO" Type="Self.MODELO" Multiplicity="0..1" />
+    <End Role="POS" Type="Self.POS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MODELO">
+        <PropertyRef Name="Id_Modelo" />
+      </Principal>
+      <Dependent Role="POS">
+        <PropertyRef Name="Id_Modelo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_POS_SIM_POS">
+    <End Role="ARTICULO" Type="Self.ARTICULO" Multiplicity="1" />
+    <End Role="POS_SIM" Type="Self.POS_SIM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ARTICULO">
+        <PropertyRef Name="Id_Articulo" />
+      </Principal>
+      <Dependent Role="POS_SIM">
+        <PropertyRef Name="Id_POS" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_POS_SIM_SIM">
+    <End Role="ARTICULO" Type="Self.ARTICULO" Multiplicity="1" />
+    <End Role="POS_SIM" Type="Self.POS_SIM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ARTICULO">
+        <PropertyRef Name="Id_Articulo" />
+      </Principal>
+      <Dependent Role="POS_SIM">
+        <PropertyRef Name="Id_SIM" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRODUCTO_ESTADO">
+    <End Role="ESTADO" Type="Self.ESTADO" Multiplicity="0..1" />
+    <End Role="ARTICULO" Type="Self.ARTICULO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ESTADO">
+        <PropertyRef Name="Id_Estado" />
+      </Principal>
+      <Dependent Role="ARTICULO">
+        <PropertyRef Name="Id_Estado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ROL_OPERACION_OPERACIONES">
+    <End Role="OPERACIONES" Type="Self.OPERACIONES" Multiplicity="1" />
+    <End Role="ROL_OPERACION" Type="Self.ROL_OPERACION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OPERACIONES">
+        <PropertyRef Name="Id_Operaciones" />
+      </Principal>
+      <Dependent Role="ROL_OPERACION">
+        <PropertyRef Name="Id_Operacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ROL_OPERACION_ROL">
+    <End Role="ROL" Type="Self.ROL" Multiplicity="1" />
+    <End Role="ROL_OPERACION" Type="Self.ROL_OPERACION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROL">
+        <PropertyRef Name="Id_Rol" />
+      </Principal>
+      <Dependent Role="ROL_OPERACION">
+        <PropertyRef Name="Id_Rol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SIM_TIPO_OPERADOR">
+    <End Role="TIPO_OPERADOR" Type="Self.TIPO_OPERADOR" Multiplicity="0..1" />
+    <End Role="SIM" Type="Self.SIM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TIPO_OPERADOR">
+        <PropertyRef Name="Id_Tipo_Operador" />
+      </Principal>
+      <Dependent Role="SIM">
+        <PropertyRef Name="Id_Tipo_Operador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USUARIO_ROL">
+    <End Role="ROL" Type="Self.ROL" Multiplicity="1" />
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROL">
+        <PropertyRef Name="Id_Rol" />
+      </Principal>
+      <Dependent Role="USUARIO">
+        <PropertyRef Name="Id_Rol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dev_orquestaModelStoreContainer">
+    <EntitySet Name="ARTICULO" EntityType="Self.ARTICULO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CANAL" EntityType="Self.CANAL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CATEGORIA" EntityType="Self.CATEGORIA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DETALLE_INVENTARIO" EntityType="Self.DETALLE_INVENTARIO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DETALLE_PEDIDO" EntityType="Self.DETALLE_PEDIDO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ESTADO" EntityType="Self.ESTADO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="INVENTARIO" EntityType="Self.INVENTARIO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MODELO" EntityType="Self.MODELO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MODELO_PLAN" EntityType="Self.MODELO_PLAN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MODULO" EntityType="Self.MODULO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OPERACIONES" EntityType="Self.OPERACIONES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PEDIDO" EntityType="Self.PEDIDO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PLANES" EntityType="Self.PLANES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="POS" EntityType="Self.POS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="POS_SIM" EntityType="Self.POS_SIM" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ROL" EntityType="Self.ROL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ROL_OPERACION" EntityType="Self.ROL_OPERACION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SIM" EntityType="Self.SIM" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TIPO_OPERADOR" EntityType="Self.TIPO_OPERADOR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UBICACION" EntityType="Self.UBICACION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_DETALLE_INVENTARIO_INVENTARIO" Association="Self.FK_DETALLE_INVENTARIO_INVENTARIO">
+      <End Role="INVENTARIO" EntitySet="INVENTARIO" />
+      <End Role="DETALLE_INVENTARIO" EntitySet="DETALLE_INVENTARIO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DETALLE_INVENTARIO_PRODUCTO" Association="Self.FK_DETALLE_INVENTARIO_PRODUCTO">
+      <End Role="ARTICULO" EntitySet="ARTICULO" />
+      <End Role="DETALLE_INVENTARIO" EntitySet="DETALLE_INVENTARIO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DETALLE_INVENTARIO_UBICACION" Association="Self.FK_DETALLE_INVENTARIO_UBICACION">
+      <End Role="UBICACION" EntitySet="UBICACION" />
+      <End Role="DETALLE_INVENTARIO" EntitySet="DETALLE_INVENTARIO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DETALLE_PEDIDO_PEDIDO" Association="Self.FK_DETALLE_PEDIDO_PEDIDO">
+      <End Role="PEDIDO" EntitySet="PEDIDO" />
+      <End Role="DETALLE_PEDIDO" EntitySet="DETALLE_PEDIDO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DETALLE_PEDIDO_PRODUCTO" Association="Self.FK_DETALLE_PEDIDO_PRODUCTO">
+      <End Role="ARTICULO" EntitySet="ARTICULO" />
+      <End Role="DETALLE_PEDIDO" EntitySet="DETALLE_PEDIDO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_INVENTARIO_CANAL" Association="Self.FK_INVENTARIO_CANAL">
+      <End Role="CANAL" EntitySet="CANAL" />
+      <End Role="INVENTARIO" EntitySet="INVENTARIO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Modelo_Plan_MODELO" Association="Self.FK_Modelo_Plan_MODELO">
+      <End Role="MODELO" EntitySet="MODELO" />
+      <End Role="MODELO_PLAN" EntitySet="MODELO_PLAN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Modelo_Plan_PLANES" Association="Self.FK_Modelo_Plan_PLANES">
+      <End Role="PLANES" EntitySet="PLANES" />
+      <End Role="MODELO_PLAN" EntitySet="MODELO_PLAN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OPERACIONES_MODULO" Association="Self.FK_OPERACIONES_MODULO">
+      <End Role="MODULO" EntitySet="MODULO" />
+      <End Role="OPERACIONES" EntitySet="OPERACIONES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PEDIDO_USUARIO" Association="Self.FK_PEDIDO_USUARIO">
+      <End Role="CANAL" EntitySet="CANAL" />
+      <End Role="PEDIDO" EntitySet="PEDIDO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PEDIDO_USUARIO1" Association="Self.FK_PEDIDO_USUARIO1">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="PEDIDO" EntitySet="PEDIDO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_POS_MODELO" Association="Self.FK_POS_MODELO">
+      <End Role="MODELO" EntitySet="MODELO" />
+      <End Role="POS" EntitySet="POS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_POS_SIM_POS" Association="Self.FK_POS_SIM_POS">
+      <End Role="ARTICULO" EntitySet="ARTICULO" />
+      <End Role="POS_SIM" EntitySet="POS_SIM" />
+    </AssociationSet>
+    <AssociationSet Name="FK_POS_SIM_SIM" Association="Self.FK_POS_SIM_SIM">
+      <End Role="ARTICULO" EntitySet="ARTICULO" />
+      <End Role="POS_SIM" EntitySet="POS_SIM" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRODUCTO_ESTADO" Association="Self.FK_PRODUCTO_ESTADO">
+      <End Role="ESTADO" EntitySet="ESTADO" />
+      <End Role="ARTICULO" EntitySet="ARTICULO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ROL_OPERACION_OPERACIONES" Association="Self.FK_ROL_OPERACION_OPERACIONES">
+      <End Role="OPERACIONES" EntitySet="OPERACIONES" />
+      <End Role="ROL_OPERACION" EntitySet="ROL_OPERACION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ROL_OPERACION_ROL" Association="Self.FK_ROL_OPERACION_ROL">
+      <End Role="ROL" EntitySet="ROL" />
+      <End Role="ROL_OPERACION" EntitySet="ROL_OPERACION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SIM_TIPO_OPERADOR" Association="Self.FK_SIM_TIPO_OPERADOR">
+      <End Role="TIPO_OPERADOR" EntitySet="TIPO_OPERADOR" />
+      <End Role="SIM" EntitySet="SIM" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USUARIO_ROL" Association="Self.FK_USUARIO_ROL">
+      <End Role="ROL" EntitySet="ROL" />
+      <End Role="USUARIO" EntitySet="USUARIO" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
